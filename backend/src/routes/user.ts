@@ -3,6 +3,7 @@ import { PrismaClient } from '@prisma/client/edge';
 import { withAccelerate } from '@prisma/extension-accelerate';
 import { sign } from 'hono/jwt';
 import bcrypt from "bcryptjs";
+import { signupSchema, signinSchema } from "@callmesahu/pluma-blog-common";
 
 const route = new Hono<{
     Bindings: {
@@ -22,6 +23,12 @@ route.post("/signup", async c => {
         }).$extends(withAccelerate());
     
         const { email, name, password } = await c.req.json();
+        const { success } = signupSchema.safeParse({ email, name, password });
+        if(!success){
+            c.status(400);
+            return c.json({ error: "Invalid data" });
+        };
+
         const user = await prisma.user.findUnique({
             where: { email }
         });
@@ -51,6 +58,11 @@ route.post("/signin", async c => {
         }).$extends(withAccelerate());
 
         const { email, password } = await c.req.json();
+        const { success } = signinSchema.safeParse({ email, password });
+        if(!success){
+            c.status(400);
+            return c.json({ error: "Invalid data" });
+        };
         const user = await prisma.user.findUnique({
             where: { email }
         });
