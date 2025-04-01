@@ -21,7 +21,7 @@ route.post("/signup", async c => {
             datasourceUrl:c.env.DATABASE_URL,
         }).$extends(withAccelerate());
     
-        const { email, password } = await c.req.json();
+        const { email, name, password } = await c.req.json();
         const user = await prisma.user.findUnique({
             where: { email }
         });
@@ -32,7 +32,7 @@ route.post("/signup", async c => {
         
         const hashedPassword = await bcrypt.hash(password, 10);
         const createdUser = await prisma.user.create({
-            data: { email, password: hashedPassword }
+            data: { email, name, password: hashedPassword }
         });
         const token = await sign({ id: createdUser.id }, c.env.JWT_SECRET);
 

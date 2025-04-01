@@ -1,4 +1,4 @@
-name = "backend"
+name = "pluma-blog"
 compatibility_date = "2025-03-30"
 
 main = "src/index.ts"
