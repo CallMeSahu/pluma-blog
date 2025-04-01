@@ -1,8 +1,0 @@
-name = "pluma-blog"
-compatibility_date = "2025-03-30"
-
-main = "src/index.ts"
-
-[vars]
-DATABASE_URL="prisma://accelerate.prisma-data.net/?api_key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiNDQ2NzJmN2EtNDE3Ni00YzM5LWE2NTAtNThhZDg1YWRiZGFkIiwidGVuYW50X2lkIjoiM2JlZWQ1MTMxOGNmMDQ5MzlkYmM4YzJlMzA3MDMzNWZiZTAxZDZhNTM4OWEzNzhjYWEyNzQ0ODMzOTlmYWNkZiIsImludGVybmFsX3NlY3JldCI6ImViYTE2NjQ3LWI3OWItNGM0Mi1iMDU1LTdlMTg4NTUzNjAzYiJ9.AE94WoZVHsCH0H8QZs0Ofe3b5km1qIUTNI-kaZYJnh4"
-JWT_SECRET="G9a&Yz2x!NpX4VqL#bR7$WmD@Kt8JcP3F^MhT5Z*OsE"
