@@ -14,20 +14,37 @@ const router = new Hono<{
 }>();
 
 router.use("/*", async (c, next) => {
-    const token = c.req.header("Authorization")?.split(" ")[1];
-    if(!token){
+    try {
+        const prisma = new PrismaClient({
+            datasourceUrl:c.env.DATABASE_URL,
+        }).$extends(withAccelerate());
+        
+        const token = c.req.header("Authorization")?.split(" ")[1];
+        if(!token){
+            c.status(401);
+            return c.text("Unauthorized");
+        }
+    
+        const payload = await verify(token, c.env.JWT_SECRET);
+        if(!payload){
+            c.status(401);
+            return c.text("Unauthorized");
+        }
+    
+        const existingUser = await prisma.user.findUnique({
+            where: { id: payload.id as string }
+        })    
+        if(!existingUser){
+            c.status(401);
+            return c.text("Unauthorized");
+        }
+    
+        c.set('userId', existingUser.id);
+        await next();
+    } catch (error) {
         c.status(401);
-        return c.text("Unauthorized");
+        return c.json({ error: "Unauthorized" });        
     }
-
-    const payload = await verify(token, c.env.JWT_SECRET);
-    if(!payload){
-        c.status(401);
-        return c.text("Unauthorized");
-    }
-
-    c.set('userId', payload.id as string);
-    await next();
 });
 
 router.get("/", c => {
