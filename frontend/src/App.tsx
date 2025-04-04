@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
+import { ToastContainer } from "react-toastify";
 
 const Blog = lazy(() => import("./pages/Blog"));
 const Signin = lazy(() => import("./pages/Signin"));
@@ -10,8 +11,9 @@ function App() {
   return (
     <>
       <Suspense fallback={<div>Loading...</div>}>
+        <ToastContainer theme="dark" />
         <Routes>
-          <Route path="/blog/:id" element={<Blog />} />
+          <Route path="/blog/" element={<Blog />} />
           <Route path="/signin" element={<Signin />} />
           <Route path="/signup" element={<Signup />} />
         </Routes>

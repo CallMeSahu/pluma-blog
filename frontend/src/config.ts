@@ -1,0 +1,1 @@
+export const BACKEND_URL = "https://pluma-blog.siddharthasahu-work.workers.dev";
