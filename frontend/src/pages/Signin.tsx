@@ -21,7 +21,7 @@ const Signin = () => {
       const token = response.data.token;
       localStorage.setItem("token", token);
       toast.success("Signin Successful!");
-      navigate("/blog");
+      navigate("/");
     } catch (error) {
       console.log(error);
       toast.error("Error Signing In!");
@@ -44,7 +44,7 @@ const Signin = () => {
             label="Password" type="password" placeholder="Enter your password"
             onChange={(e) => { setFormInputs({ ...formInputs, password: e.target.value }) }}
           />
-          <button className="w-full p-2 bg-zinc-900 rounded-lg text-lg text-white font-semibold" onClick={sendRequest}>Sign In</button>
+          <button className="w-full mt-1 p-2 bg-zinc-900 rounded-lg text-lg text-white font-semibold" onClick={sendRequest}>Sign In</button>
         </div>
       </div>
       <Quote />

@@ -22,7 +22,7 @@ const Signup = () => {
       const token = response.data.token;
       localStorage.setItem("token", token);
       toast.success("Account Created!")
-      navigate("/blog");
+      navigate("/");
     } catch (error) {
       console.log(error);
       toast.error("Error Signing Up!")
@@ -49,7 +49,7 @@ const Signup = () => {
             label="Password" type="password" placeholder="Enter your password"
             onChange={(e) => { setFormInputs({ ...formInputs, password: e.target.value }) }}
           />
-          <button className="w-full p-2 bg-zinc-900 rounded-lg text-lg text-white font-semibold" onClick={sendRequest}>Sign Up</button>
+          <button className="w-full mt-1 p-2 bg-zinc-900 rounded-lg text-lg text-white font-semibold" onClick={sendRequest}>Sign Up</button>
         </div>
       </div>
       <Quote />
