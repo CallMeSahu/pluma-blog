@@ -155,7 +155,17 @@ router.get("/:id", async c => {
 
         const id = c.req.param("id");
         const existingBlog = await prisma.blog.findUnique({
-            where: { id }
+            where: { id },
+            select: {
+                title: true,
+                content: true,
+                publishDate: true,
+                author: {
+                    select: {
+                        name: true,
+                    }
+                }
+            }
         });
 
         if(!existingBlog){

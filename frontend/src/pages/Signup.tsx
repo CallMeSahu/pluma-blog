@@ -22,7 +22,7 @@ const Signup = () => {
       const token = response.data.token;
       localStorage.setItem("token", token);
       toast.success("Account Created!")
-      navigate("/");
+      navigate("/blogs");
     } catch (error) {
       console.log(error);
       toast.error("Error Signing Up!")

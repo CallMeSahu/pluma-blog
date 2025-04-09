@@ -21,7 +21,7 @@ const Signin = () => {
       const token = response.data.token;
       localStorage.setItem("token", token);
       toast.success("Signin Successful!");
-      navigate("/");
+      navigate("/blogs");
     } catch (error) {
       console.log(error);
       toast.error("Error Signing In!");
