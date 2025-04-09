@@ -1,42 +1,40 @@
-import { useEffect, useState } from 'react'
-import { BACKEND_URL } from '../config';
-import axios from 'axios';
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { BACKEND_URL } from "../config";
 
-export const useBlog = () => {
-    const [loading, setLoading] = useState(true);
-    const [blogs, setBlogs] = useState<Blog[]>([]);
+export const useBlog = ( {id}: {id: string} ) => {
+  const [loading, setLoading] = useState(true);
+  const [blog, setBlog] = useState<Blog | null>(null);
 
-    useEffect(() => {
-        const fetchBlogs = async() => {
-            try {
-                const token = localStorage.getItem("token");
-                const response = await axios.get(`${BACKEND_URL}/api/v1/blog/bulk`, {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    },
-                    maxBodyLength: Infinity
-                });
-                setBlogs(response.data);
-                setLoading(false);
-            } catch (error) {
-                console.log(error)  
-            }
-        };        
-        fetchBlogs();
-    }, [])
+  useEffect(() => {
+    const fetchBlog = async() => {
+      try {
+        const token = localStorage.getItem("token");
+        const response = await axios.get(`${BACKEND_URL}/api/v1/blog/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          },
+          maxBodyLength: Infinity
+        })
+        setBlog(response.data);
+        setLoading(false);
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    fetchBlog()
+  }, [id]);
 
-
-    return (
-        {loading, blogs}
-    )
+  return (
+    { loading, blog }
+  )
 };
 
-interface Blog {
-    id: string;
-    author: {
-      name: string;
-    };
-    title: string;
-    content: string;
-    publishDate: string;
+interface Blog{
+  title: string,
+  content: string,
+  publishDate: string,
+  author: {
+    name: string
   }
+}

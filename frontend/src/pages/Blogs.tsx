@@ -1,10 +1,10 @@
 import { BlogCard } from "../components/BlogCard";
 import { BlogCardLoader } from "../components/BlogCardLoader";
 import { Navbar } from "../components/Navbar";
-import { useBlog } from "../hooks/useBlog";
+import { useBlogs } from "../hooks/useBlogs";
 
 const Blogs = () => {
-  const { loading, blogs } = useBlog();
+  const { loading, blogs } = useBlogs();
 
   return (
     <>
