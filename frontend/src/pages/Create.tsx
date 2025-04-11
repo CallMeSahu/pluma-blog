@@ -16,13 +16,14 @@ const Create = () => {
 
     const publishButtonHandler = async() => {
         try {
-            await axios.post(`${BACKEND_URL}/api/v1/blog`, blog, {
+            const response = await axios.post(`${BACKEND_URL}/api/v1/blog`, blog, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`
                 }
             });
+            const id = response.data.id;
             toast.success("Blog Published Sucessfully!");
-            navigate("/blogs");
+            navigate(`/blog/${id}`);
         } catch (error) {
             console.log(error);
             toast.error("Error Creating Blog!")
