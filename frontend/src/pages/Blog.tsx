@@ -11,7 +11,7 @@ const Blog = () => {
 
   return (
     <>
-      <Navbar name='Siddhartha Sahu' />
+      <Navbar />
       <div className='max-w-[800px] h-screen py-5 mx-auto'>
         {
           loading ? (

@@ -39,7 +39,7 @@ const Create = () => {
 
     return (
         <>
-            <Navbar name={'Siddhartha Sahu'} />
+            <Navbar />
             <div className='max-w-[800px] h-screen py-5 mx-auto flex'>
                 <div className='w-3/4'>
                     <textarea
