@@ -17,7 +17,7 @@ export const Navbar = () => {
         }
         <div className="w-10 h-10 flex justify-center items-center bg-blue-200 rounded-full cursor-pointer">
           <span className="text-blue-900 font-semibold">
-            {(name ?? "").split(" ").map(word => word[0]).join('').toUpperCase()}
+            {(name ? name.split(" ").map(word => word[0]).join('').toUpperCase() : "GU")}
           </span>
         </div>
       </div>

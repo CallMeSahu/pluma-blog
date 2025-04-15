@@ -21,7 +21,7 @@ const Signin = () => {
       const token = response.data.token;
       const name = response.data.name;
       localStorage.setItem("token", token);
-      localStorage.setItem("username", name);
+      localStorage.setItem("name", name);
       toast.success("Signin Successful!");
       navigate("/blogs");
     } catch (error) {
