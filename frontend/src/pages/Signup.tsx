@@ -37,7 +37,7 @@ const Signup = () => {
         <div className="flex w-full lg:w-1/2 flex-col justify-center items-center">
           <h1 className="text-4xl font-bold mb-2">Create an Account</h1>
           <p className="text-gray-500 text-lg mb-5">
-            Already have an account? <Link className="underline" to="/signin">Login</Link>
+            Already have an account? <Link className="underline" to="/">Login</Link>
           </p>
           <LabeledInput
             label="Name" placeholder="Enter your name"
