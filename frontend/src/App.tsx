@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import { ToastContainer } from "react-toastify";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const Blogs = lazy(() => import("./pages/Blogs"));
 const Signin = lazy(() => import("./pages/Signin"));
@@ -17,9 +18,11 @@ function App() {
         <Routes>
           <Route path="/" element={<Signin />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/blogs" element={<Blogs />} />
-          <Route path="/blog/:id" element={<Blog />} />
-          <Route path="/create" element={<Create />} />
+          <Route element={<ProtectedRoute />}>
+            <Route path="/blogs" element={<Blogs />} />
+            <Route path="/blog/:id" element={<Blog />} />
+            <Route path="/create" element={<Create />} />
+          </Route>
         </Routes>
       </Suspense>
     </>
