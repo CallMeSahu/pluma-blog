@@ -44,7 +44,7 @@ route.post("/signup", async c => {
         const token = await sign({ id: createdUser.id }, c.env.JWT_SECRET);
 
         c.status(201);
-        return c.json({ token });
+        return c.json({ token, name: createdUser.name });
     } catch (error) {
         console.error(error);
         return c.text("Error signing up", 500);        
@@ -72,10 +72,10 @@ route.post("/signin", async c => {
             c.status(401);
             return c.json({ error: "Invalid credentials" });
         }    
-        const token = await sign({ id: user.id }, c.env.JWT_SECRET);
+        const token = await sign({ id: user.id, name: user.name }, c.env.JWT_SECRET);
 
         c.status(200);
-        return c.json({ token });
+        return c.json({ token, name: user.name });
     } catch (error) {
         console.error(error);
         return c.text("Error signing in", 500);                
