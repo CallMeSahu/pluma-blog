@@ -20,7 +20,9 @@ const Signup = () => {
     try {
       const response = await axios.post(`${BACKEND_URL}/api/v1/user/signup`, formInputs);
       const token = response.data.token;
+      const name = response.data.name;
       localStorage.setItem("token", token);
+      localStorage.setItem("name", name);
       toast.success("Account Created!")
       navigate("/blogs");
     } catch (error) {

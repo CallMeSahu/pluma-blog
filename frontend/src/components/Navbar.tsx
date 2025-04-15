@@ -1,7 +1,8 @@
 import { Link, useLocation } from "react-router-dom";
 
-export const Navbar = ({ name }: { name: string }) => {
+export const Navbar = () => {
   const location = useLocation();
+  const name = localStorage.getItem("name");
   return (
     <nav className="flex justify-between items-center px-6 md:px-20 xl:px-[300px] py-4 border-b border-gray-200 shadow-sm bg-white">
       <div>
@@ -16,7 +17,7 @@ export const Navbar = ({ name }: { name: string }) => {
         }
         <div className="w-10 h-10 flex justify-center items-center bg-blue-200 rounded-full cursor-pointer">
           <span className="text-blue-900 font-semibold">
-            {name.split(" ").map(word => word[0]).join('').toUpperCase()}
+            {(name ?? "").split(" ").map(word => word[0]).join('').toUpperCase()}
           </span>
         </div>
       </div>

@@ -19,7 +19,9 @@ const Signin = () => {
     try {
       const response = await axios.post(`${BACKEND_URL}/api/v1/user/signin`, formInputs);
       const token = response.data.token;
+      const name = response.data.name;
       localStorage.setItem("token", token);
+      localStorage.setItem("username", name);
       toast.success("Signin Successful!");
       navigate("/blogs");
     } catch (error) {
